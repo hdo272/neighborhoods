@@ -8,6 +8,6 @@
 
 #import <Parse/Parse.h>
 
-@interface FeedViewController : PFQueryTableViewController
+@interface FeedViewController : PFQueryTableViewController <UITextFieldDelegate>
 
 @end

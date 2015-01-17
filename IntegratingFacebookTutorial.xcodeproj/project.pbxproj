@@ -30,6 +30,7 @@
 		8103BD0E19AD21C300BCF4C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8103BD0B19AD21C300BCF4C7 /* main.m */; };
 		C0B54C7F1A5306E200B34A8A /* MyFeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0B54C7E1A5306E200B34A8A /* MyFeedController.xib */; };
 		C0B54C851A530C5800B34A8A /* MyFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B54C841A530C5800B34A8A /* MyFeedController.m */; };
+		C0B6F7291A6A626D00190158 /* Andrew.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0B6F7281A6A626D00190158 /* Andrew.xib */; };
 		C0DB8EFD1A53526E00777576 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DB8EFC1A53526E00777576 /* FeedViewController.m */; };
 		C0DB8EFF1A53743200777576 /* FeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0DB8EFE1A53743200777576 /* FeedController.xib */; };
 		C425016D161BBAE400474BCD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4250169161BBAE400474BCD /* StoreKit.framework */; };
@@ -75,6 +76,7 @@
 		C0B54C7E1A5306E200B34A8A /* MyFeedController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyFeedController.xib; sourceTree = "<group>"; };
 		C0B54C831A530C5800B34A8A /* MyFeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFeedController.h; sourceTree = "<group>"; };
 		C0B54C841A530C5800B34A8A /* MyFeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFeedController.m; sourceTree = "<group>"; };
+		C0B6F7281A6A626D00190158 /* Andrew.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Andrew.xib; sourceTree = "<group>"; };
 		C0DB8EFB1A53526E00777576 /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		C0DB8EFC1A53526E00777576 /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		C0DB8EFE1A53743200777576 /* FeedController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedController.xib; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 		8103BCDD19AD217900BCF4C7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C0B6F7281A6A626D00190158 /* Andrew.xib */,
 				C0B54C7E1A5306E200B34A8A /* MyFeedController.xib */,
 				C0DB8EFE1A53743200777576 /* FeedController.xib */,
 				8103BCE919AD217900BCF4C7 /* LoginViewController.xib */,
@@ -283,6 +286,7 @@
 				8103BD0C19AD21C300BCF4C7 /* InfoPlist.strings in Resources */,
 				8103BCF219AD217900BCF4C7 /* Default@2x.png in Resources */,
 				8103BCF619AD217900BCF4C7 /* login-button-small-pressed.png in Resources */,
+				C0B6F7291A6A626D00190158 /* Andrew.xib in Resources */,
 				8103BCFA19AD217900BCF4C7 /* LoginViewController.xib in Resources */,
 				8103BCF919AD217900BCF4C7 /* login-button-small@2x.png in Resources */,
 				8103BCF119AD217900BCF4C7 /* Default.png in Resources */,
