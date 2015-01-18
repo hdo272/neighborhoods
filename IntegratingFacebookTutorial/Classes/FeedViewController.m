@@ -7,6 +7,7 @@
 //
 
 #import "FeedViewController.h"
+#import "MyFeedController.h"
 
 @interface FeedViewController ()
 
@@ -42,6 +43,15 @@
     return query;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(40, 0, self.view.frame.size.width - 70, 30)];
+    UITextField *txt = [[UITextField alloc] init];
+    txt.text = @"header";
+    txt.enabled =tableView.editing;
+    txt.borderStyle = UITextBorderStyleRoundedRect;
+    return tableHeaderView;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
                         object:(PFObject *)object {
@@ -55,7 +65,7 @@
         if ([indexPath section] == 0 && [indexPath row] == 0) {
             
             //TextField
-            self->statusTextField = [[UITextField alloc] initWithFrame:CGRectMake(20, 10, 185, 30)];
+            /*self->statusTextField = [[UITextField alloc] initWithFrame:CGRectMake(20, cell.contentView.frame.origin.y, 200, 20)];
             self->statusTextField.adjustsFontSizeToFitWidth = YES;
             self->statusTextField.textColor = [UIColor blackColor];
             //if ([indexPath row] == 0) {
@@ -69,36 +79,30 @@
             
             self->statusTextField.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
             [self->statusTextField setEnabled: YES];
-            self->statusTextField.delegate = self;
+            self->statusTextField.delegate = self;*/
             
-            [cell.contentView addSubview:self->statusTextField];
-            
-            //Post Button
+            //Write Button
             UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-            [button setTitle:@"Press Me" forState:UIControlStateNormal];
+            [button setTitle:@"Write" forState:UIControlStateNormal];
             [button sizeToFit];
-            button.center = CGPointMake(320/2, 60);
+            button.center = CGPointMake(250, 0);
             [button setTag:0];
-            [button addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventAllEditingEvents];
+            [button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:button];
+            
+            //[cell.contentView addSubview:self->statusTextField];
+
+            
+        }
+        else{
+            // Configure the cell to show todo item with a priority at the bottom
+            cell.textLabel.text = [object objectForKey:@"shareText"];
         }
     }
     
-    // Configure the cell to show todo item with a priority at the bottom
-    cell.textLabel.text = [object objectForKey:@"shareText"];
+
     
     return cell;
-}
-
-- (void)buttonPressed{
-    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-    testObject[@"shareText"] = self->statusTextField.text;
-    if ([PFUser currentUser]) {
-        testObject[@"userName"] = [PFUser currentUser][@"profile"][@"name"];
-        testObject[@"userID"] = [PFUser currentUser][@"profile"][@"facebookId"];
-        //[self _updateProfileData];
-    }
-    [testObject saveInBackground];
 }
 
 - (void)viewDidLoad {
@@ -109,6 +113,40 @@
     PFQueryTableViewController *controller = [[PFQueryTableViewController alloc] initWithClassName:@"testObject"];
     [self addChildViewController:controller];
     // Do any additional setup after loading the view.
+
+}
+
+- (void)buttonPressed:(UIButton *)paramSender{
+    //UIButton *buttonClicked = (UIButton *)sender;
+    NSLog(@"wtf");
+    /*PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
+    testObject[@"shareText"] = self->statusTextField.text;
+    if ([PFUser currentUser]) {
+        testObject[@"userName"] = [PFUser currentUser][@"profile"][@"name"];
+        testObject[@"userID"] = [PFUser currentUser][@"profile"][@"facebookId"];
+        //[self _updateProfileData];
+    }
+    [testObject saveInBackground];*/
+    [self _presentFeedViewControllerAnimated:YES];
+}
+
+- (void)_presentFeedViewControllerAnimated:(BOOL)animated {
+    MyFeedController *detailsViewController = [[MyFeedController alloc] init];
+    [self.navigationController pushViewController:detailsViewController animated:animated];
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    // get the table and search bar bounds
+    CGRect tableBounds = self.tableView.bounds;
+    CGRect searchBarFrame = self->statusTextField.frame;
+    
+    // make sure the search bar stays at the table's original x and y as the content moves
+    self->statusTextField.frame = CGRectMake(tableBounds.origin.x,
+                                      tableBounds.origin.y,
+                                      searchBarFrame.size.width,
+                                      searchBarFrame.size.height
+                                      );
 }
 
 /*- (BOOL)textFieldShouldReturn:(UITextField *)textField

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyFeedController : UIViewController
+@interface MyFeedController : UIViewController <UIImagePickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *myTextField;
 

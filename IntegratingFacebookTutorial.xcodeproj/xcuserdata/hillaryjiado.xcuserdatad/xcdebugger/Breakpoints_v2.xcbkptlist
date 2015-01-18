@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IntegratingFacebookTutorial/Classes/FeedViewController.m"
-            timestampString = "443179040.493564"
+            timestampString = "443234939.962752"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "-tableView:cellForRowAtIndexPath:object:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IntegratingFacebookTutorial/Classes/FeedViewController.m"
-            timestampString = "443179040.493564"
+            timestampString = "443234939.962752"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "-tableView:cellForRowAtIndexPath:object:"
             landmarkType = "5">
          </BreakpointContent>
@@ -73,13 +73,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IntegratingFacebookTutorial/Classes/FeedViewController.m"
-            timestampString = "443179492.497019"
+            filePath = "IntegratingFacebookTutorial/Classes/MyFeedController.m"
+            timestampString = "443235021.428605"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "-buttonPressed"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "-_presentFeedViewControllerAnimated:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

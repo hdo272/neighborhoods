@@ -9,8 +9,9 @@
 #import "MyFeedController.h"
 #import <Parse/Parse.h>
 #import "UserDetailsViewController.h"
+#import "FeedViewController.h"
 
-@interface MyFeedController ()
+@interface MyFeedController()
 
 @end
 
@@ -41,6 +42,12 @@
         //[self _updateProfileData];
     }
     [testObject saveInBackground];
+    [self _presentFeedViewControllerAnimated:YES];
+}
+
+- (void)_presentFeedViewControllerAnimated:(BOOL)animated {
+    FeedViewController *detailsViewController = [[FeedViewController alloc] init];
+    [self.navigationController pushViewController:detailsViewController animated:animated];
 }
 
 - (IBAction)Settings:(id)sender {

@@ -8,6 +8,8 @@
 
 #import <Parse/Parse.h>
 
-@interface FeedViewController : PFQueryTableViewController <UITextFieldDelegate>
+@interface FeedViewController : PFQueryTableViewController <UITextFieldDelegate, UIScrollViewDelegate>
+
+@property (nonatomic, strong) UIButton *button;
 
 @end
