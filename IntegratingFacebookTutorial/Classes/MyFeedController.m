@@ -18,20 +18,43 @@
 @implementation MyFeedController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     // removes back button
     [self.navigationItem setHidesBackButton:YES];
     // Do any additional setup after loading the view.
     PFQueryTableViewController *controller = [[PFQueryTableViewController alloc] initWithClassName:@"testObject"];
     [self addChildViewController:controller];
+    
+    /*self.locationManager = [[CLLocationManager alloc]init]; // initializing locationManager
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers; // setting the accuracy
+    
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    
+    [self.locationManager startUpdatingLocation];  //requesting location updates*/
+
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
+/*-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"There was an error retrieving your location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [errorAlert show];
+    NSLog(@"Error: %@",error.description);
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
+    NSLog(@"%@", [locations lastObject]);
+}*/
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     NSLog(@"You entered %@",self.myTextField.text);
     [self.myTextField resignFirstResponder];
     return YES;
 }
+
 - (IBAction)TextStatus:(id)sender {
     //saves User's text
     PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
@@ -41,6 +64,18 @@
         testObject[@"userID"] = [PFUser currentUser][@"profile"][@"facebookId"];
         //[self _updateProfileData];
     }
+    
+    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
+        if (!error) {
+            NSLog(@"SAVEOBJECT AT %f, %f", geoPoint.latitude, geoPoint.longitude);
+            testObject[@"shareText"] = @"hi";
+            //[testObject saveInBackground];
+            [testObject setObject:geoPoint forKey:@"location"];
+        }
+        else{
+            NSLog(@"uhoh!");
+        }
+    }];
     [testObject saveInBackground];
     [self _presentFeedViewControllerAnimated:YES];
 }
@@ -52,11 +87,15 @@
 
 - (IBAction)Settings:(id)sender {
     NSLog(@"Settings");
+    [self _presentUserDetailsViewControllerAnimated:YES];
     
-    UserDetailsViewController *usersDetailsViewController = [[UserDetailsViewController alloc] init];
-    
-    [self presentViewController:usersDetailsViewController animated:YES completion:nil];
 }
+
+- (void)_presentUserDetailsViewControllerAnimated:(BOOL)animated {
+    UserDetailsViewController *detailsViewController = [[UserDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    [self.navigationController pushViewController:detailsViewController animated:animated];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

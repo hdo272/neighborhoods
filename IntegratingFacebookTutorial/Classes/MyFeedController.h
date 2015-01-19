@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface MyFeedController : UIViewController <UIImagePickerControllerDelegate>
+@interface MyFeedController : UIViewController <UIImagePickerControllerDelegate, CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *myTextField;
+
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end

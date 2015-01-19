@@ -7,9 +7,12 @@
 //
 
 #import <Parse/Parse.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface FeedViewController : PFQueryTableViewController <UITextFieldDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIButton *button;
+
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end

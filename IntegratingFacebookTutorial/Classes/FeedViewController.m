@@ -83,7 +83,8 @@
             
             //Write Button
             UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-            [button setTitle:@"Write" forState:UIControlStateNormal];
+            //[button setTitle:@"Write" forState:UIControlStateNormal];
+            [button setBackgroundImage:[UIImage imageNamed:@"edit-50.png"] forState:UIControlStateNormal];
             [button sizeToFit];
             button.center = CGPointMake(250, 0);
             [button setTag:0];
@@ -113,7 +114,39 @@
     PFQueryTableViewController *controller = [[PFQueryTableViewController alloc] initWithClassName:@"testObject"];
     [self addChildViewController:controller];
     // Do any additional setup after loading the view.
+    
+    self.locationManager = [[CLLocationManager alloc]init];
+    
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters;
+    [self.locationManager startUpdatingLocation];
 
+    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
+        if (!error) {
+            NSLog(@"User is currently at %f, %f", geoPoint.latitude, geoPoint.longitude);
+
+            [[PFUser currentUser] setObject:geoPoint forKey:@"currentLocation"];
+            [[PFUser currentUser] saveInBackground];
+        }
+        else{
+            NSLog(@"uhoh!");
+        }
+    }];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"There was an error retrieving your location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [errorAlert show];
+    NSLog(@"Error: %@",error.description);
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    NSLog(@"%@", [locations lastObject]);
 }
 
 - (void)buttonPressed:(UIButton *)paramSender{

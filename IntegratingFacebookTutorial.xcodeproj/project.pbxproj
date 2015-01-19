@@ -30,6 +30,8 @@
 		8103BD0E19AD21C300BCF4C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8103BD0B19AD21C300BCF4C7 /* main.m */; };
 		C0B54C7F1A5306E200B34A8A /* MyFeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0B54C7E1A5306E200B34A8A /* MyFeedController.xib */; };
 		C0B54C851A530C5800B34A8A /* MyFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B54C841A530C5800B34A8A /* MyFeedController.m */; };
+		C0B6F7361A6BA90400190158 /* loginImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C0B6F7351A6BA90400190158 /* loginImage.jpg */; };
+		C0B6F7381A6BB68B00190158 /* edit-50.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B6F7371A6BB68B00190158 /* edit-50.png */; };
 		C0DB8EFD1A53526E00777576 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DB8EFC1A53526E00777576 /* FeedViewController.m */; };
 		C0DB8EFF1A53743200777576 /* FeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0DB8EFE1A53743200777576 /* FeedController.xib */; };
 		C425016D161BBAE400474BCD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4250169161BBAE400474BCD /* StoreKit.framework */; };
@@ -75,6 +77,8 @@
 		C0B54C7E1A5306E200B34A8A /* MyFeedController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyFeedController.xib; sourceTree = "<group>"; };
 		C0B54C831A530C5800B34A8A /* MyFeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFeedController.h; sourceTree = "<group>"; };
 		C0B54C841A530C5800B34A8A /* MyFeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFeedController.m; sourceTree = "<group>"; };
+		C0B6F7351A6BA90400190158 /* loginImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = loginImage.jpg; sourceTree = "<group>"; };
+		C0B6F7371A6BB68B00190158 /* edit-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "edit-50.png"; path = "../../../../../Downloads/edit-50.png"; sourceTree = "<group>"; };
 		C0DB8EFB1A53526E00777576 /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		C0DB8EFC1A53526E00777576 /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		C0DB8EFE1A53743200777576 /* FeedController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedController.xib; sourceTree = "<group>"; };
@@ -97,9 +101,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D10F48316DD68E000690A0F /* CoreLocation.framework in Frameworks */,
 				8103BCCD19AD1F8900BCF4C7 /* Bolts.framework in Frameworks */,
 				C425016D161BBAE400474BCD /* StoreKit.framework in Frameworks */,
-				6D10F48316DD68E000690A0F /* CoreLocation.framework in Frameworks */,
 				C4250170161BBAEE00474BCD /* libz.dylib in Frameworks */,
 				D4DA7A0E14D334F30055F672 /* AudioToolbox.framework in Frameworks */,
 				D4DA7A0F14D334F30055F672 /* CFNetwork.framework in Frameworks */,
@@ -171,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				C0B54C7E1A5306E200B34A8A /* MyFeedController.xib */,
+				C0B6F7371A6BB68B00190158 /* edit-50.png */,
 				C0DB8EFE1A53743200777576 /* FeedController.xib */,
 				8103BCE919AD217900BCF4C7 /* LoginViewController.xib */,
 				8103BCEA19AD217900BCF4C7 /* TableHeaderView.xib */,
@@ -180,6 +185,7 @@
 				8103BCE319AD217900BCF4C7 /* Icon.png */,
 				8103BCE419AD217900BCF4C7 /* Icon@2x.png */,
 				8103BCE519AD217900BCF4C7 /* login-button-small-pressed.png */,
+				C0B6F7351A6BA90400190158 /* loginImage.jpg */,
 				8103BCE619AD217900BCF4C7 /* login-button-small-pressed@2x.png */,
 				8103BCE719AD217900BCF4C7 /* login-button-small.png */,
 				8103BCE819AD217900BCF4C7 /* login-button-small@2x.png */,
@@ -284,10 +290,12 @@
 				8103BCF219AD217900BCF4C7 /* Default@2x.png in Resources */,
 				8103BCF619AD217900BCF4C7 /* login-button-small-pressed.png in Resources */,
 				8103BCFA19AD217900BCF4C7 /* LoginViewController.xib in Resources */,
+				C0B6F7381A6BB68B00190158 /* edit-50.png in Resources */,
 				8103BCF919AD217900BCF4C7 /* login-button-small@2x.png in Resources */,
 				8103BCF119AD217900BCF4C7 /* Default.png in Resources */,
 				8103BCF719AD217900BCF4C7 /* login-button-small-pressed@2x.png in Resources */,
 				8103BCFB19AD217900BCF4C7 /* TableHeaderView.xib in Resources */,
+				C0B6F7361A6BA90400190158 /* loginImage.jpg in Resources */,
 				8103BCF019AD217900BCF4C7 /* Default-568h@2x.png in Resources */,
 				8103BCF519AD217900BCF4C7 /* Icon@2x.png in Resources */,
 				8103BCF819AD217900BCF4C7 /* login-button-small.png in Resources */,
@@ -396,6 +404,7 @@
 		D4DA7A0314D3345A0055F672 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -412,6 +421,7 @@
 		D4DA7A0414D3345A0055F672 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
