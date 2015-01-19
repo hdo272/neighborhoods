@@ -29,7 +29,13 @@
 }
 
 - (PFQuery *)queryForTable {
+    PFGeoPoint *userLocation;
+    if ([PFUser currentUser]) {
+        userLocation = [PFUser currentUser][@"currentLocation"];
+    }
     PFQuery *query = [PFQuery queryWithClassName:@"TestObject"];
+    [query whereKey:@"location" nearGeoPoint:userLocation withinMiles:10.0];
+    [query findObjects];
     
     // If no objects are loaded in memory, we look to the cache
     // first to fill the table and then subsequently do a query
@@ -37,7 +43,6 @@
     if ([self.objects count] == 0) {
         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     }
-    
     //[query orderByAscending:@"createdAt"];
     
     return query;
