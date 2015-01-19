@@ -58,25 +58,22 @@
 - (IBAction)TextStatus:(id)sender {
     //saves User's text
     PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-    testObject[@"shareText"] = self.myTextField.text;
-    if ([PFUser currentUser]) {
-        testObject[@"userName"] = [PFUser currentUser][@"profile"][@"name"];
-        testObject[@"userID"] = [PFUser currentUser][@"profile"][@"facebookId"];
-        //[self _updateProfileData];
-    }
     
     [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
         if (!error) {
             NSLog(@"SAVEOBJECT AT %f, %f", geoPoint.latitude, geoPoint.longitude);
-            testObject[@"shareText"] = @"hi";
-            //[testObject saveInBackground];
+            testObject[@"shareText"] = self.myTextField.text;
+            if ([PFUser currentUser]) {
+                testObject[@"userName"] = [PFUser currentUser][@"profile"][@"name"];
+                testObject[@"userID"] = [PFUser currentUser][@"profile"][@"facebookId"];
+            }
             [testObject setObject:geoPoint forKey:@"location"];
+            [testObject saveInBackground];
         }
         else{
             NSLog(@"uhoh!");
         }
     }];
-    [testObject saveInBackground];
     [self _presentFeedViewControllerAnimated:YES];
 }
 
