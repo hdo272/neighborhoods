@@ -174,8 +174,8 @@
 		8103BCDD19AD217900BCF4C7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C0B54C7E1A5306E200B34A8A /* MyFeedController.xib */,
 				C0B6F7371A6BB68B00190158 /* edit-50.png */,
+				C0B54C7E1A5306E200B34A8A /* MyFeedController.xib */,
 				C0DB8EFE1A53743200777576 /* FeedController.xib */,
 				8103BCE919AD217900BCF4C7 /* LoginViewController.xib */,
 				8103BCEA19AD217900BCF4C7 /* TableHeaderView.xib */,

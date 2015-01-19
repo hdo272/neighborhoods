@@ -95,10 +95,8 @@
 
             
         }
-        else{
-            // Configure the cell to show todo item with a priority at the bottom
-            cell.textLabel.text = [object objectForKey:@"shareText"];
-        }
+        // Configure the cell to show todo item with a priority at the bottom
+        cell.textLabel.text = [object objectForKey:@"shareText"];
     }
     
 

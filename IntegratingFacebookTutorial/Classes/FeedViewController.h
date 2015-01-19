@@ -9,7 +9,7 @@
 #import <Parse/Parse.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface FeedViewController : PFQueryTableViewController <UITextFieldDelegate, UIScrollViewDelegate>
+@interface FeedViewController : PFQueryTableViewController <UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIButton *button;
 
