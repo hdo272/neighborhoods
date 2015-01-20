@@ -28,6 +28,11 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setHidden:NO];
+}
+
 - (PFQuery *)queryForTable {
     PFGeoPoint *userLocation;
     if ([PFUser currentUser]) {
@@ -57,55 +62,76 @@
     return tableHeaderView;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 75;
+}
+
+-(void)viewDidLayoutSubviews
+{
+    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self.tableView setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell.imageView.frame = (CGRect){{0.0f, 0.0f}, 70, 70};
+    cell.imageView.layer.cornerRadius = cell.imageView.frame.size.height / 2.0f;
+    cell.imageView.layer.masksToBounds = YES;
+    cell.imageView.layer.borderWidth = 0;
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
                         object:(PFObject *)object {
     static NSString *CellIdentifier = @"Cell";
-    
+    //tableView.backgroundColor = [UIColor colorWithRed:(255/255.0) green:(191/255.0) blue:(198/255.0) alpha:1];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    //cell.backgroundColor = [UIColor redColor];
+     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                       reuseIdentifier:CellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryNone;
-        if ([indexPath section] == 0 && [indexPath row] == 0) {
+        cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
+        //retrieve post's userID
+        NSString *userPostID = [object objectForKey:@"ParseUserID"];
+        //query for User
+        PFQuery *query = [PFUser query];
+        [query whereKey:@"username" equalTo:userPostID];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error){
+                //NSLog(@"ObjectsAgain: %@", objects);
+                for (PFObject *object in objects) {
+                    NSDictionary *fbInfo = [object objectForKey:@"profile"];
+                    NSString *userProfilePhotoURLString = [fbInfo objectForKey:@"pictureURL"];
+                    // Download the user's facebook profile picture
+                    if (userProfilePhotoURLString) {
+                        NSLog(@"value:%@", userProfilePhotoURLString);
+                        NSURL *pictureURL = [NSURL URLWithString:userProfilePhotoURLString];
+                        //NSURLRequest *urlRequest = [NSURLRequest requestWithURL:pictureURL];
+                        //UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:userProfilePhotoURLString]]];
+                        NSData *profilePictureData = [NSData dataWithContentsOfURL:pictureURL];
+                        cell.imageView.image = [UIImage imageWithData:profilePictureData];
+                    }
+                }
+            }
             
-            //TextField
-            /*self->statusTextField = [[UITextField alloc] initWithFrame:CGRectMake(20, cell.contentView.frame.origin.y, 200, 20)];
-            self->statusTextField.adjustsFontSizeToFitWidth = YES;
-            self->statusTextField.textColor = [UIColor blackColor];
-            //if ([indexPath row] == 0) {
-                statusTextField.placeholder = @"Share a message!";
-                statusTextField.returnKeyType = UIReturnKeyNext;
-            //}
-            self->statusTextField.backgroundColor = [UIColor whiteColor];
-            self->statusTextField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
-            self->statusTextField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support
-            self->statusTextField.tag = 0;
-            
-            self->statusTextField.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
-            [self->statusTextField setEnabled: YES];
-            self->statusTextField.delegate = self;*/
-            
-            //Write Button
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-            //[button setTitle:@"Write" forState:UIControlStateNormal];
-            [button setBackgroundImage:[UIImage imageNamed:@"edit-50.png"] forState:UIControlStateNormal];
-            [button sizeToFit];
-            button.center = CGPointMake(250, 0);
-            [button setTag:0];
-            [button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-            [self.view addSubview:button];
-            
-            //[cell.contentView addSubview:self->statusTextField];
-
-            
-        }
+        }];
         // Configure the cell to show todo item with a priority at the bottom
         cell.textLabel.text = [object objectForKey:@"shareText"];
     }
-    
-
-    
     return cell;
 }
 
@@ -117,6 +143,20 @@
     PFQueryTableViewController *controller = [[PFQueryTableViewController alloc] initWithClassName:@"testObject"];
     [self addChildViewController:controller];
     // Do any additional setup after loading the view.
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    //Write Button
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    //[button setTitle:@"Write" forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"edit-50.png"] forState:UIControlStateNormal];
+    [button sizeToFit];
+    //button.center = CGPointMake(250, 0);
+    [button setTag:0];
+    [button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *barButton =[[UIBarButtonItem alloc] initWithCustomView:button];
+    
+    self.navigationItem.rightBarButtonItem = barButton;
     
     self.locationManager = [[CLLocationManager alloc]init];
     

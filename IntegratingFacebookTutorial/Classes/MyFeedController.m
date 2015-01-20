@@ -65,7 +65,7 @@
             testObject[@"shareText"] = self.myTextField.text;
             if ([PFUser currentUser]) {
                 testObject[@"userName"] = [PFUser currentUser][@"profile"][@"name"];
-                testObject[@"userID"] = [PFUser currentUser][@"profile"][@"facebookId"];
+                testObject[@"ParseUserID"] = [PFUser currentUser][@"username"];
             }
             [testObject setObject:geoPoint forKey:@"location"];
             [testObject saveInBackground];
